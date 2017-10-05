@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ZxingController@index');
+Route::post('/', 'ZxingController@scan');
