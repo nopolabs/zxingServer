@@ -17,14 +17,23 @@ class ZxingApiController extends Controller
     }
 
    public function scan(Request $request)
-    {
-        $path = request()->file('isbnImage')->store('isbnImages', 'public');
+   {
+       if ($request->exists('isbnImage')) {
+           $path = $request->file('isbnImage')->store('scan');
+       } else {
+           $path = 'scan/' . uniqid();
+           $contents = $request->exists('isbnUrl')
+               ? file_get_contents($request->get('isbnUrl'))
+               : $request->getContent(true);
+           Storage::put($path, $contents);
+       }
 
-        $storagePath = Storage::disk('public')->getDriver()->getAdapter()->getPathPrefix();
-
-        $fullPath = $storagePath . $path;
+        $storagePath = Storage::disk()->getDriver()->getAdapter()->getPathPrefix();
+        $fullPath = $storagePath.$path;
 
         $result = $this->scanner->scan($fullPath);
+
+        Storage::disk('public')->delete($path);
 
         return response()->json($result->toArray());
     }
