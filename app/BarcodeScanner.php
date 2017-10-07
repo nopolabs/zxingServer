@@ -8,7 +8,7 @@ use PHPZxing\PHPZxingDecoder;
 use PHPZxing\ZxingBarNotFound;
 use PHPZxing\ZxingImage;
 
-class IsbnScanner
+class BarcodeScanner
 {
     public function scan(string $imagePath) : ScanResult
     {
@@ -18,7 +18,7 @@ class IsbnScanner
             $decodedData = current($decoder->decode($imagePath));
 
             if ($decodedData instanceof ZxingImage) {
-                return ScanResult::isbn($decodedData->getImageValue(), $decodedData->getType(), $decodedData->getFormat());
+                return ScanResult::barcode($decodedData->getImageValue(), $decodedData->getType(), $decodedData->getFormat());
             }
 
             if ($decodedData instanceof ZxingBarNotFound) {

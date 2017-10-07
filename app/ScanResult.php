@@ -5,15 +5,15 @@ namespace app;
 
 class ScanResult
 {
-    private $isbn;
+    private $code;
     private $type;
     private $format;
     private $errorMessage;
 
-    public static function isbn(string $isbn, string $type, string $format) : ScanResult
+    public static function barcode(string $code, string $type, string $format) : ScanResult
     {
         $result = new self();
-        $result->isbn = $isbn;
+        $result->code = $code;
         $result->type = $type;
         $result->format = $format;
 
@@ -30,17 +30,17 @@ class ScanResult
 
     public function isSuccess() : bool
     {
-        return $this->isbn !== null;
+        return $this->code !== null;
     }
 
     public function isFailure() : bool
     {
-        return $this->isbn === null;
+        return $this->code === null;
     }
 
-    public function getIsbn()
+    public function getCode()
     {
-        return $this->isbn;
+        return $this->code;
     }
 
     public function getType()
@@ -62,7 +62,7 @@ class ScanResult
     {
         if ($this->isSuccess()) {
             return [
-                'isbn' => $this->getIsbn(),
+                'code' => $this->getCode(),
                 'type' => $this->getType(),
                 'format' => $this->getFormat(),
             ];

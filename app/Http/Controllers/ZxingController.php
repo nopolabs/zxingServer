@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\IsbnScanner;
+use App\BarcodeScanner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,7 +11,7 @@ class ZxingController extends Controller
 {
     private $scanner;
 
-    public function __construct(IsbnScanner $scanner)
+    public function __construct(BarcodeScanner $scanner)
     {
         $this->scanner = $scanner;
     }
