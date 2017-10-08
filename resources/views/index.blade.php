@@ -97,7 +97,7 @@
                 <form method="POST" action="/" enctype="multipart/form-data">
                     {{ csrf_field() }}
 
-                    <input type="file" name="isbnImage"/>
+                    <input type="file" name="image"/>
 
                     <button type="submit">Scan ISBN</button>
                 </form>
