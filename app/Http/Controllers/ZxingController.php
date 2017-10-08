@@ -23,9 +23,9 @@ class ZxingController extends Controller
 
     public function scan(Request $request)
     {
-        $path = $request->file('isbnImage')->store('isbnImages', 'local');
+        $path = $request->file('image')->store('images', 'public');
 
-        $storagePath = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
+        $storagePath = Storage::disk('public')->getDriver()->getAdapter()->getPathPrefix();
 
         $fullPath = $storagePath . $path;
 
