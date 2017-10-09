@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>ISBN Scanner</title>
+        <title>{{ config('app.name', 'Barcode Scanner') }}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    ISBN Scanner
+                    {{ config('app.name', 'Barcode Scanner') }}
                 </div>
 
                 @if (isset($path))
@@ -88,9 +88,9 @@
                     </div>
                 @endif
 
-                @if (isset($isbn))
+                @if (isset($barcode))
                     <div>
-                        {{ $isbn }}
+                        {{ $barcode }}
                     </div>
                 @endif
 
@@ -99,7 +99,7 @@
 
                     <input type="file" name="image"/>
 
-                    <button type="submit">Scan ISBN</button>
+                    <button type="submit">Scan Barcode</button>
                 </form>
             </div>
         </div>

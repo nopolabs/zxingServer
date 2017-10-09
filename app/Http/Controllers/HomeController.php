@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
 use App\BarcodeScanner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class ZxingController extends Controller
+class HomeController extends Controller
 {
     private $scanner;
 
@@ -18,14 +18,14 @@ class ZxingController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        return view('index');
+        return view('home');
     }
 
     public function scan(Request $request)
     {
-        $path = $request->file('image')->store('images', 'public');
+        $path = $request->file('image')->store(Auth::user()->id.'/images', 'public');
 
         $storagePath = Storage::disk('public')->getDriver()->getAdapter()->getPathPrefix();
 
@@ -33,6 +33,6 @@ class ZxingController extends Controller
 
         $result = $this->scanner->scan($fullPath);
 
-        return view('index', ['path' => $path, 'barcode' => $result->toJson()]);
+        return view('home', ['path' => $path, 'barcode' => $result->toJson()]);
     }
 }

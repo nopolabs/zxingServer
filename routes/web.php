@@ -11,5 +11,10 @@
 |
 */
 
-Route::get('/', 'ZxingController@index');
-Route::post('/', 'ZxingController@scan');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', 'HomeController@index');
+
+Route::post('/', 'HomeController@scan');
