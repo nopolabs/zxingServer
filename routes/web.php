@@ -18,4 +18,5 @@ Route::get('/', 'HomeController@index');
 Route::post('/', 'HomeController@scan');
 
 Route::post('/manage', 'ManageController@index')->name('manage');
+Route::post('/createToken', 'ManageController@createToken')->name('createToken');
 

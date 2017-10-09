@@ -33,6 +33,9 @@ class HomeController extends Controller
 
         $result = $this->scanner->scan($fullPath);
 
-        return view('home', ['path' => $path, 'barcode' => $result->toJson()]);
+        return view('home', [
+            'path' => $path,
+            'barcode' => $result->toJson(),
+        ]);
     }
 }

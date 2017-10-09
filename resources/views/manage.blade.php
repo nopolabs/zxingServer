@@ -17,6 +17,20 @@
                             </div>
                         @endif
 
+                        <div>
+                            @if (isset($token))
+                                <pre>curl -F 'image=@resources/barcode.jpg' {{ env('APP_URL') }}/api -H 'Authorization: Bearer {{ $token }}'</pre>
+                            @else
+                                <a href="{{ route('createToken') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('createToken-form').submit();">
+                                    Create API Token
+                                </a>
+                                <form id="createToken-form" action="{{ route('createToken') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            @endif
+                        </div>
                     </div>
 
                 </div>
