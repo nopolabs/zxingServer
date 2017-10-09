@@ -14,7 +14,8 @@
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/', 'HomeController@index');
-
 Route::post('/', 'HomeController@scan');
+
+Route::post('/manage', 'ManageController@index')->name('manage');
+
