@@ -13,9 +13,9 @@ class ScanResult
     public static function barcode(string $code, string $type, string $format) : ScanResult
     {
         $result = new self();
-        $result->code = $code;
-        $result->type = $type;
-        $result->format = $format;
+        $result->code = trim($code);
+        $result->type = trim($type);
+        $result->format = trim($format);
 
         return $result;
     }
