@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ManageController extends Controller
@@ -12,19 +13,23 @@ class ManageController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->has('createToken') && $request->get('createToken') === 'true') {
+            return view('manage', [
+                'token' => $this->createToken(),
+            ]);
+        }
+
         return view('manage');
     }
 
-    public function createToken()
+    private function createToken()
     {
-        Auth::user()->clients()->where('name', 'BARCODE')->delete();
+        $user = Auth::user();
 
-        $token = Auth::user()->createToken('BARCODE', ['scan-barcodes'])->accessToken;
+        $user->clients()->where('name', 'BARCODE')->delete();
 
-        return view('manage', [
-            'token' => $token,
-        ]);
+        return $user->createToken('BARCODE', ['scan-barcodes'])->accessToken;
     }
 }

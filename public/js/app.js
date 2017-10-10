@@ -803,6 +803,8 @@ var app = new Vue({
   el: '#app'
 });
 
+app.clipboard = new Clipboard('.copy-btn');
+
 /***/ }),
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -861,7 +863,7 @@ if (token) {
 //     key: 'your-pusher-key'
 // });
 
-window.clipboard = __webpack_require__(35);
+window.Clipboard = __webpack_require__(35);
 
 /***/ }),
 /* 11 */

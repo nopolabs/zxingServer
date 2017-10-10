@@ -52,4 +52,4 @@ if (token) {
 //     key: 'your-pusher-key'
 // });
 
-window.clipboard = require('clipboard');
+window.Clipboard = require('clipboard');
