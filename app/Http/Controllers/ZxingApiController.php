@@ -21,7 +21,7 @@ class ZxingApiController extends Controller
        if ($request->exists('image')) {
            $path = $request->file('image')->store('temp');
        } else {
-           $path = 'temp/' . uniqid();
+           $path = 'temp/' . uniqid('ZxingApiController_', true);
            $contents = $request->exists('url')
                ? file_get_contents($request->get('url'))
                : $request->getContent(true);
